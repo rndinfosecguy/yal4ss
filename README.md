@@ -1,31 +1,33 @@
 # yal4ss
 yet another log4shell scanner written in Python
 
-## Intro
+## 1 Intro
 
-### General
+### 1.1 General
 - the purpose of this script is to scan multiple servers for the log4shell vulnerability
 - it allows set custom payloads and injection points via its ```config.cfg``` file
 - the file ```targets.txt``` needs to contain the systems you want to test
   
-### IMPORTANT
+### 1.2 IMPORTANT
 - the script just tests if the vulnerability exists, but does not exploit it!
 - the script is meant to be used by sysadmins to check if their systems are vulnerable or not
 - you are not allowed to use this script against systems where the owner did not allow you to do so! 
 
 ---
 
-## Requirements
+## 2 Requirements
 ```shell
 $ pip3 install -r requirements.txt
 ```
 
 ---
 
-## Usage
-### Customize ```config.cfg``` file
+## 3 Usage
+### 3.1 Customize ```config.cfg``` file
+#### 3.1.1 Mandatory
 - change ```back_connect_IP=127.0.0.1``` to the IP of your testing machine
 - change ```back_connect_PORT=8080``` to a value of your desire
+#### 3.1.2 Optional
 - if you want to add a test injection string just add a line like this ```INJ_STRING:${jndi:ldap://<IP>:<PORT>/<RND>}```
 - ```<IP>``` is the placeholder where the ```yal4ass.py``` inserts your ```back_connect_IP``` when testing your targets
 - ```<PORT>``` is the placeholder where the ```yal4ass.py``` inserts your ```back_connect_PORT``` when testing your targets
@@ -34,12 +36,12 @@ $ pip3 install -r requirements.txt
 - if you want to add a test injection point for a specific get parameter just adda line like this 
   ```INJ_POINT:GET:hackme```
   
-### Adding targets to ```targets.txt```
+### 3.2 Adding targets to ```targets.txt```
 - just add one target/service per line
 - format: ```[http|https]://[TARGET_IP]:[TARGET_PORT]```
 - example: ```http://192.168.1.100:8080```
 
-### Starting the script
+### 3.3 Starting the script
 ```shell
 $ python3 yal4ass.py -h
 
