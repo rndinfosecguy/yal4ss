@@ -48,16 +48,17 @@ targets = f.readlines()
 f.close()
 for line in configContent:
     line = line.strip()
-    if "back_connect_IP" in line:
-        back_connect_IP = line.split('=')[1]
-    if "back_connect_PORT" in line:
-        back_connect_PORT = int(line.split('=')[1])
-    if "INJ_STRING" in line:
-        line = line.split('INJ_STRING:')[1]
-        injection_strings.add(line)
-    if "INJ_POINT" in line:
-        line = line.split("INJ_POINT:")[1]
-        injection_points.add(line)
+    if "#" not in line:
+        if "back_connect_IP" in line:
+            back_connect_IP = line.split('=')[1]
+        if "back_connect_PORT" in line:
+            back_connect_PORT = int(line.split('=')[1])
+        if "INJ_STRING" in line:
+            line = line.split('INJ_STRING:')[1]
+            injection_strings.add(line)
+        if "INJ_POINT" in line:
+            line = line.split("INJ_POINT:")[1]
+            injection_points.add(line)
 
 srv = threading.Thread(target=srvcomponent, args=(back_connect_IP, back_connect_PORT,))
 srv.start()

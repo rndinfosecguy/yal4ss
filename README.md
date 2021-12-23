@@ -35,6 +35,7 @@ $ pip3 install -r requirements.txt
 - if you want to add a test injection point for a http header just adda line like this ```INJ_POINT:HEADER:User-Agent```
 - if you want to add a test injection point for a specific get parameter just adda line like this 
   ```INJ_POINT:GET:hackme```
+- if you want to comment out an injection string, or an injection point just add a ```#``` in front of the line
   
 ### 3.2 Adding targets to ```targets.txt```
 - just add one target/service per line
